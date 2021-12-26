@@ -19,7 +19,7 @@ function clicked() {
             ndef.onreading = event => {
                 const message = event.message;
                 alert(`Serial Number: ${event.serialNumber}`)
-                alert(Object.values(message))
+                x.innerHTML = `Msg: ${Object.values(message)}`
                 for (const record of message.records) {
                     alert("Record type:  " + record.recordType);
                     alert("MIME type:    " + record.mediaType);
