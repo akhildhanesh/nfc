@@ -1,4 +1,4 @@
-(function clicked() {
+function clicked() {
     let x = document.getElementById("display")
     const ndef = new NDEFReader()
     ndef.scan()
@@ -48,7 +48,7 @@
         }).catch(error => {
             x.innerHTML = `Error! Scan failed to start: ${error}.`
         });
-})()
+}
 
 // async function clicked() {
 //     alert("User clicked scan button");
