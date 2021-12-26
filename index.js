@@ -12,7 +12,7 @@ function clicked() {
             };
             ndef.onreading = event => {
                 // x.innerHTML = "NDEF message read."
-                alert("NDEF message read.")
+                alert("NDEF message read.", event.serialNumber, event.message)
             };
         }).catch(error => {
             // x.innerHTML = `Error! Scan failed to start: ${error}.`
