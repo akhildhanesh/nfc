@@ -1,13 +1,12 @@
-function clicked() {
+(function clicked() {
     let x = document.getElementById("display")
     const ndef = new NDEFReader()
     ndef.scan()
         .then(() => {
-            // x.innerHTML = "Scan started successfully."
+            x.innerHTML = "Ready to Scan"
             alert("Scan started successfully.")
             ndef.onreadingerror = () => {
-                // x.innerHTML = "Cannot read data from the NFC tag. Try another one?"
-                alert("Cannot read data from the NFC tag. Try another one?")
+                x.innerHTML = "Cannot read data from the NFC tag. Try another one?"
             };
             // ndef.onreading = event => {
 
@@ -18,31 +17,38 @@ function clicked() {
             // };
             ndef.onreading = event => {
                 const message = event.message;
-                alert(`Serial Number: ${event.serialNumber}`)
-                x.innerHTML = `Msg: ${Object.values(message)}`
+                // alert(`Serial Number: ${event.serialNumber}`)
+                document.getElementById("sn").innerHTML = event.serialNumber
                 for (const record of message.records) {
-                    alert("Record type:  " + record.recordType);
-                    alert("MIME type:    " + record.mediaType);
-                    alert("Record id:    " + record.id);
+                    document.getElementById("rt").innerHTML = record.recordType
+                    document.getElementById("mime").innerHTML = record.mediaType
+                    document.getElementById("rid").innerHTML = record.id
+
+                    // alert("Record type:  " + record.recordType);
+                    // alert("MIME type:    " + record.mediaType);
+                    // alert("Record id:    " + record.id);
+
                     switch (record.recordType) {
                         case "text":
                             let textDecoder = new TextDecoder(record.encoding);
-                            alert(`Text: ${textDecoder.decode(record.data)} (${record.lang})`)
+                            // alert(`Text: ${textDecoder.decode(record.data)} (${record.lang})`)
+                            document.getElementById("txt").innerHTML = textDecoder.decode(record.data)
+                            document.getElementById("txtl").innerHTML = textDecoder.decode(record.lang)
                             break;
                         case "url":
                             textDecoder = new TextDecoder()
-                            alert(`URL: ${textDecoder.decode(record.data)}`)
+                            // alert(`URL: ${textDecoder.decode(record.data)}`)
+                            document.getElementById("url").innerHTML = textDecoder.decode(record.data)
                             break;
                         default:
-                            alert('nothing')
+                            console.log('error')
                     }
                 }
             };
         }).catch(error => {
-            // x.innerHTML = `Error! Scan failed to start: ${error}.`
-            alert(`Error! Scan failed to start: ${error}.`)
+            x.innerHTML = `Error! Scan failed to start: ${error}.`
         });
-}
+})()
 
 // async function clicked() {
 //     alert("User clicked scan button");
