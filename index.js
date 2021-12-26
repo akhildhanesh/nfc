@@ -9,12 +9,33 @@ function clicked() {
                 // x.innerHTML = "Cannot read data from the NFC tag. Try another one?"
                 alert("Cannot read data from the NFC tag. Try another one?")
             };
-            ndef.onreading = event => {
+            // ndef.onreading = event => {
                 
+            //     alert(`Serial Number: ${event.serialNumber}`)
+            //     alert(`Msg: ${event.message}`)
+            //     alert(`NDEF message read.`)
+            //     x.innerHTML = `Msg: ${event.message}`
+            // };
+            ndef.onreading = event => {
+                const message = event.message;
                 alert(`Serial Number: ${event.serialNumber}`)
-                alert(`Msg: ${event.message}`)
-                alert(`NDEF message read.`)
-                x.innerHTML = `Msg: ${event.message}`
+                for (const record of message.records) {
+                    alert("Record type:  " + record.recordType);
+                    alert("MIME type:    " + record.mediaType);
+                    alert("Record id:    " + record.id);
+                    switch (record.recordType) {
+                        case "text":
+                            const textDecoder = new TextDecoder(record.encoding);
+                            alert(`Text: ${textDecoder.decode(record.data)} (${record.lang})`)
+                            break;
+                        case "url":
+                            const textDecoder = new TextDecoder()
+                            alert(`URL: ${textDecoder.decode(record.data)}`)
+                            break;
+                        default:
+                        // TODO: Handle other records with record data.
+                    }
+                }
             };
         }).catch(error => {
             // x.innerHTML = `Error! Scan failed to start: ${error}.`
