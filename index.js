@@ -10,7 +10,7 @@ function clicked() {
                 alert("Cannot read data from the NFC tag. Try another one?")
             };
             // ndef.onreading = event => {
-                
+
             //     alert(`Serial Number: ${event.serialNumber}`)
             //     alert(`Msg: ${event.message}`)
             //     alert(`NDEF message read.`)
@@ -33,7 +33,7 @@ function clicked() {
                             alert(`URL: ${textDecoder.decode(record.data)}`)
                             break;
                         default:
-                        // TODO: Handle other records with record data.
+                            alert('nothing')
                     }
                 }
             };
