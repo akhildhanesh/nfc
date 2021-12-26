@@ -14,7 +14,7 @@
 //         x.innerHTML = `Error! Scan failed to start: ${error}.`
 //     });
 
-function clicked() {
+async function clicked() {
     alert("User clicked scan button");
 
     try {
