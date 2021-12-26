@@ -1,10 +1,11 @@
 function clicked() {
     let x = document.getElementById("display")
-    const ndef = new NDEFReader()
+    let d = document.getElementById("tab")
+    d.style.display = "none"
+    const ndef = new NDEFReader()   
     ndef.scan()
         .then(() => {
             x.innerHTML = "Ready to Scan"
-            alert("Scan started successfully.")
             ndef.onreadingerror = () => {
                 x.innerHTML = "Cannot read data from the NFC tag. Try another one?"
             };
@@ -16,6 +17,7 @@ function clicked() {
             //     x.innerHTML = `Msg: ${event.message}`
             // };
             ndef.onreading = event => {
+                d.style.display = "block"
                 const message = event.message;
                 // alert(`Serial Number: ${event.serialNumber}`)
                 document.getElementById("sn").innerHTML = event.serialNumber
