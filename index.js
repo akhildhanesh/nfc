@@ -15,22 +15,22 @@
 //     });
 
 function clicked() {
-    log("User clicked scan button");
+    alert("User clicked scan button");
 
     try {
         const ndef = new NDEFReader();
         await ndef.scan();
-        log("> Scan started");
+        alert("> Scan started");
 
         ndef.addEventListener("readingerror", () => {
-            log("Argh! Cannot read data from the NFC tag. Try another one?");
+            alert("! Cannot read data from the NFC tag. Try another one?");
         });
 
         ndef.addEventListener("reading", ({ message, serialNumber }) => {
-            log(`> Serial Number: ${serialNumber}`);
-            log(`> Records: (${message.records.length})`);
+            alert(`> Serial Number: ${serialNumber}`);
+            alert(`> Records: (${message.records.length})`);
         });
     } catch (error) {
-        log("Argh! " + error);
+        alert("! " + error);
     }
 }
