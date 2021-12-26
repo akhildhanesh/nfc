@@ -1,6 +1,5 @@
-let x = document.getElementById("display")
-
 function clicked() {
+    let x = document.getElementById("display")
     const ndef = new NDEFReader();
     ndef.scan()
         .then(() => {
@@ -11,10 +10,11 @@ function clicked() {
                 alert("Cannot read data from the NFC tag. Try another one?")
             };
             ndef.onreading = event => {
-                x.innerHTML = `Msg: ${event.message}`
+                
                 alert(`Serial Number: ${event.serialNumber}`)
                 alert(`Msg: ${event.message}`)
                 alert(`NDEF message read.`)
+                x.innerHTML = `Msg: ${event.message}`
             };
         }).catch(error => {
             // x.innerHTML = `Error! Scan failed to start: ${error}.`
