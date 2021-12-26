@@ -12,7 +12,8 @@ function clicked() {
             };
             ndef.onreading = event => {
                 // x.innerHTML = "NDEF message read."
-                alert(`NDEF message read. ${event}`)
+                alert(event)
+                alert(`NDEF message read.`)
             };
         }).catch(error => {
             // x.innerHTML = `Error! Scan failed to start: ${error}.`
