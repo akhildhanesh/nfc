@@ -12,7 +12,8 @@ function clicked() {
             };
             ndef.onreading = event => {
                 // x.innerHTML = "NDEF message read."
-                alert(event)
+                alert(`Serial Number: ${event.serialNumber}`)
+                alert(`Msg: ${event.message}`)
                 alert(`NDEF message read.`)
             };
         }).catch(error => {
