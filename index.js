@@ -1,6 +1,6 @@
 function clicked() {
     let x = document.getElementById("display")
-    const ndef = new NDEFReader();
+    const ndef = new NDEFReader()
     ndef.scan()
         .then(() => {
             // x.innerHTML = "Scan started successfully."
@@ -19,6 +19,7 @@ function clicked() {
             ndef.onreading = event => {
                 const message = event.message;
                 alert(`Serial Number: ${event.serialNumber}`)
+                alert(Object.values(message))
                 for (const record of message.records) {
                     alert("Record type:  " + record.recordType);
                     alert("MIME type:    " + record.mediaType);
