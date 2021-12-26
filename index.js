@@ -25,11 +25,11 @@ function clicked() {
                     alert("Record id:    " + record.id);
                     switch (record.recordType) {
                         case "text":
-                            const textDecoder = new TextDecoder(record.encoding);
+                            let textDecoder = new TextDecoder(record.encoding);
                             alert(`Text: ${textDecoder.decode(record.data)} (${record.lang})`)
                             break;
                         case "url":
-                            const textDecoder = new TextDecoder()
+                            textDecoder = new TextDecoder()
                             alert(`URL: ${textDecoder.decode(record.data)}`)
                             break;
                         default:
